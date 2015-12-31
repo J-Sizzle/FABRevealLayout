@@ -85,7 +85,7 @@ public class FABRevealLayout extends RelativeLayout {
     private void setupFAB(View view){
         validateFAB();
         fab = (FloatingActionButton) view;
-        fab.setOnClickListener(fabClickListener);
+//        fab.setOnClickListener(fabClickListener);
     }
 
     private void setupChildView(View view){
