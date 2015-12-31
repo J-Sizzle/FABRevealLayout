@@ -36,7 +36,7 @@ import java.util.List;
 public class FABRevealLayout extends RelativeLayout {
 
     private static final int MAX_CHILD_VIEWS = 2;
-    private static final int FAB_SIZE = 48;
+    private static final int FAB_SIZE = 0;
     private static final int ANIMATION_DURATION = 2500;
     private final Interpolator INTERPOLATOR = new FastOutSlowInInterpolator();
 
@@ -85,7 +85,7 @@ public class FABRevealLayout extends RelativeLayout {
     private void setupFAB(View view){
         validateFAB();
         fab = (FloatingActionButton) view;
-//        fab.setOnClickListener(fabClickListener);
+        fab.setOnClickListener(fabClickListener);
     }
 
     private void setupChildView(View view){
