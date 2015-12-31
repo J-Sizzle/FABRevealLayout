@@ -36,8 +36,8 @@ import java.util.List;
 public class FABRevealLayout extends RelativeLayout {
 
     private static final int MAX_CHILD_VIEWS = 2;
-    private static final int FAB_SIZE = 0;
-    private static final int ANIMATION_DURATION = 500;
+    private static final int FAB_SIZE = 48;
+    private static final int ANIMATION_DURATION = 2500;
     private final Interpolator INTERPOLATOR = new FastOutSlowInInterpolator();
 
     private List<View> childViews = null;
@@ -221,7 +221,7 @@ public class FABRevealLayout extends RelativeLayout {
     }
 
     private void expandCircle(){
-        Animator expandAnimator = circularExpandingView.expand();;
+        Animator expandAnimator = circularExpandingView.expand();
         expandAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
