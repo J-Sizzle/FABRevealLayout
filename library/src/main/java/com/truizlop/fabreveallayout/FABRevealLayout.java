@@ -20,6 +20,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
@@ -27,6 +28,8 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.animation.Interpolator;
 import android.widget.RelativeLayout;
 
@@ -36,8 +39,8 @@ import java.util.List;
 public class FABRevealLayout extends RelativeLayout {
 
     private static final int MAX_CHILD_VIEWS = 2;
-    private static final int FAB_SIZE = 0;
-    private static final int ANIMATION_DURATION = 2500;
+    private static final int FAB_SIZE = 45;
+    private static final int ANIMATION_DURATION = 500;
     private final Interpolator INTERPOLATOR = new FastOutSlowInInterpolator();
 
     private List<View> childViews = null;
@@ -111,7 +114,10 @@ public class FABRevealLayout extends RelativeLayout {
     private void addCircularRevealView() {
         circularExpandingView = new CircularExpandingView(getContext());
         LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-        params.topMargin = dipsToPixels(FAB_SIZE);
+        params.leftMargin = getContext().getResources().getDimensionPixelSize(R.dimen.corner_radius);
+        params.bottomMargin = getContext().getResources().getDimensionPixelSize(R.dimen.corner_radius);
+        params.rightMargin = getContext().getResources().getDimensionPixelSize(R.dimen.corner_radius);
+        params.topMargin = getContext().getResources().getDimensionPixelSize(R.dimen.corner_radius);
         circularExpandingView.setVisibility(View.GONE);
         addView(circularExpandingView, params);
     }
@@ -126,21 +132,14 @@ public class FABRevealLayout extends RelativeLayout {
     }
 
     private void setupFABPosition(){
-        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) fab.getLayoutParams();
-        params.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
-        params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            params.rightMargin = dipsToPixels(16);
-            params.topMargin = dipsToPixels(20);
-        }
         fab.bringToFront();
     }
 
     private void setupChildViewsPosition(){
-        for(int i = 0; i < childViews.size(); i++){
-            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) childViews.get(i).getLayoutParams();
-            params.topMargin = dipsToPixels(FAB_SIZE);
-        }
+//        for(int i = 0; i < childViews.size(); i++){
+//            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) childViews.get(i).getLayoutParams();
+//            params.topMargin = dipsToPixels(FAB_SIZE);
+//        }
         getSecondaryView().setVisibility(GONE);
     }
 
@@ -226,6 +225,7 @@ public class FABRevealLayout extends RelativeLayout {
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
+                circularExpandingView.setBackgroundColor(Color.TRANSPARENT);
                 swapViews();
             }
         });
@@ -234,8 +234,10 @@ public class FABRevealLayout extends RelativeLayout {
 
     private void startHideAnimation(){
         Animator contractAnimator = circularExpandingView.contract();
-        View disappearingView = getSecondaryView();
+        ViewGroup disappearingView = (ViewGroup) getSecondaryView();
+        Animation shrink = AnimationUtils.loadAnimation(getContext(), R.anim.fab_out);
         ObjectAnimator alphaAnimator = ObjectAnimator.ofFloat(disappearingView, "alpha", 1, 0);
+        View innerView = disappearingView.getChildAt(0);
 
         AnimatorSet set = new AnimatorSet();
         set.play(contractAnimator).with(alphaAnimator);
@@ -311,7 +313,6 @@ public class FABRevealLayout extends RelativeLayout {
 
     @Override
     public void setLayoutParams(ViewGroup.LayoutParams params) {
-        ((MarginLayoutParams) params).topMargin -= dipsToPixels(FAB_SIZE);
         super.setLayoutParams(params);
     }
 

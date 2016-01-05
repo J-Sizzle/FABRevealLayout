@@ -65,6 +65,7 @@ public class CircularExpandingView extends View {
         float radius = (float) Math.sqrt(cx*cx + cy*cy) * expandFraction;
 
         canvas.drawCircle(cx, cy, radius, paint);
+
     }
 
     public Animator expand(){
