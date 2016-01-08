@@ -21,7 +21,6 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.Color;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -32,18 +31,17 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.Interpolator;
 import android.widget.RelativeLayout;
 
-import java.util.List;
-
 public class FABRevealLayout extends RelativeLayout {
 
     private static final int ANIMATION_DURATION = 500;
     private final Interpolator INTERPOLATOR = new FastOutSlowInInterpolator();
 
-    private FloatingActionButton fab = null;
+    private RevealFAB fab = null;
     private CircularExpandingView circularExpandingView = null;
     private OnRevealChangeListener onRevealChangeListener = null;
     private View secondView = null;
     private View mainView = null;
+    private int fabCount;
 
     private OnClickListener fabClicker = new OnClickListener() {
         @Override public void onClick(View v) {
@@ -73,10 +71,11 @@ public class FABRevealLayout extends RelativeLayout {
 
     private void init() {
         //inflate the secondary views
-        int count = getChildCount();
+        fabCount = 0;
         for (int i = 0; i < getChildCount(); i++) {
             View view = getChildAt(i);
             if (view instanceof RevealFAB) {
+                fabCount ++;
                 RevealFAB revealFAB = (RevealFAB) view;
                 validateFAB(revealFAB);
                 revealFAB.setOnClickListener(fabClicker);
@@ -92,7 +91,7 @@ public class FABRevealLayout extends RelativeLayout {
         relativeLayout.setLayoutParams(rlp);
         relativeLayout.setVisibility(View.VISIBLE);
         mainView = relativeLayout;
-        addView(mainView, 2);
+        addView(mainView, fabCount);
 
         addCircularRevealView();
     }
@@ -111,7 +110,7 @@ public class FABRevealLayout extends RelativeLayout {
         params.rightMargin = getContext().getResources().getDimensionPixelSize(R.dimen.corner_radius);
         params.topMargin = getContext().getResources().getDimensionPixelSize(R.dimen.corner_radius);
         circularExpandingView.setVisibility(View.GONE);
-        addView(circularExpandingView, 3 ,params);
+        addView(circularExpandingView, fabCount +1 ,params);
     }
 
     private boolean isShowingMainView() {
@@ -158,10 +157,7 @@ public class FABRevealLayout extends RelativeLayout {
 
     private void prepareForReveal() {
         circularExpandingView.getLayoutParams().height = getMainView().getHeight();
-        circularExpandingView.setColor(fab.getBackgroundTintList() != null ?
-                fab.getBackgroundTintList().getDefaultColor() :
-                0xFF000000
-        );
+        circularExpandingView.setColor(getResources().getColor(android.R.color.white));
         circularExpandingView.setVisibility(VISIBLE);
     }
 
@@ -268,7 +264,7 @@ public class FABRevealLayout extends RelativeLayout {
                 onRevealChangeListener.onSecondaryViewAppeared(this, getSecondaryView());
             }
         }
-        invalidate();
+        secondView.bringToFront();
     }
 
     private View getSecondaryView() {

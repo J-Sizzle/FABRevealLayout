@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Pink 500-->
+    <color name="accent_500">#fff</color>
+    <!--Pink 700-->
+    <color name="accent_700">#eee</color>
+</resources>

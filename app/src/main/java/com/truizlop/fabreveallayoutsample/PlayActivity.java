@@ -19,7 +19,7 @@ public class PlayActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.ivClose, R.id.ivClose2})
+    @OnClick({R.id.ivClose, R.id.ivClose2, R.id.ivClose3})
     public void closeClicked(){
         fabRevealLayout.revealMainView();
     }

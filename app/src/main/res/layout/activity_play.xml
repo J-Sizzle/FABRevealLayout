@@ -23,6 +23,8 @@
             android:layout_margin="10dp"
             android:src="@android:drawable/ic_dialog_map"
             android:tint="#f0f"
+            android:padding="15dp"
+            android:background="@drawable/fab_selector"
             app:backgroundTint="@color/white"
             app:reveal_layout="@+id/view_two"/>
 
@@ -36,6 +38,18 @@
             android:tint="#f0f"
             app:backgroundTint="@color/white"
             app:reveal_layout="@+id/view_one"/>
+
+        <com.truizlop.fabreveallayout.RevealFAB
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="10dp"
+            android:padding="15dp"
+            android:src="@android:drawable/ic_dialog_map"
+            android:tint="#f0f"
+            app:backgroundTint="@color/white"
+            app:reveal_layout="@+id/view_three"/>
 
         <RelativeLayout
             android:id="@+id/view_one"
@@ -81,6 +95,32 @@
 
             <TextView
                 android:id="@+id/tvCentered2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="View Two"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/view_three"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="15dp"
+            android:background="@drawable/ls_card"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/ivClose3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:src="@android:drawable/ic_menu_close_clear_cancel"
+                android:tint="#f00"/>
+
+            <TextView
+                android:id="@+id/tvCentered3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
