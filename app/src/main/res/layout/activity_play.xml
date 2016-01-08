@@ -15,36 +15,42 @@
         android:layout_height="match_parent"
         >
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab"
+        <com.truizlop.fabreveallayout.RevealFAB
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="10dp"
+            android:src="@android:drawable/ic_dialog_map"
+            android:tint="#f0f"
+            app:backgroundTint="@color/white"
+            app:reveal_layout="@+id/view_two"/>
+
+        <com.truizlop.fabreveallayout.RevealFAB
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_margin="10dp"
-            app:backgroundTint="@color/white"
+            android:src="@android:drawable/ic_dialog_map"
             android:tint="#f0f"
-            android:src="@android:drawable/ic_dialog_map"/>
-
-        <View
-            android:id="@+id/main_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </View>
+            app:backgroundTint="@color/white"
+            app:reveal_layout="@+id/view_one"/>
 
         <RelativeLayout
-            android:id="@+id/secondary_view"
+            android:id="@+id/view_one"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="15dp"
             android:background="@drawable/ls_card"
-            android:layout_margin="15dp">
+            android:visibility="gone">
 
             <ImageView
                 android:id="@+id/ivClose"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
                 android:src="@android:drawable/ic_menu_close_clear_cancel"
                 android:tint="#f00"/>
 
@@ -53,17 +59,33 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="CENTERED TEXT"/>
+                android:text="View one"/>
+        </RelativeLayout>
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:layout_below="@+id/tvCentered"/>
+        <RelativeLayout
+            android:id="@+id/view_two"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="15dp"
+            android:background="@drawable/ls_card"
+            android:visibility="gone">
 
-            <TextView
+            <ImageView
+                android:id="@+id/ivClose2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:src="@android:drawable/ic_menu_close_clear_cancel"
+                android:tint="#f00"/>
+
+            <TextView
+                android:id="@+id/tvCentered2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
                 android:text="View Two"/>
+
         </RelativeLayout>
 
     </com.truizlop.fabreveallayout.FABRevealLayout>
