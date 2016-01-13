@@ -24,9 +24,7 @@
             android:background="@drawable/fab_selector"
             android:padding="25dp"
             android:scaleType="fitCenter"
-            android:tint="#f0f"
-            app:backgroundTint="@color/white"
-            app:icon="@android:drawable/ic_dialog_map"
+            app:fab_icon="@android:drawable/ic_delete"
             app:reveal_layout="@+id/view_two"/>
 
         <com.truizlop.fabreveallayout.RevealFAB
@@ -35,9 +33,9 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_margin="10dp"
-            android:src="@android:drawable/ic_dialog_map"
             android:tint="#f0f"
             app:backgroundTint="@color/white"
+            app:fab_icon="@drawable/ic_play_white"
             app:reveal_layout="@+id/view_one"/>
 
         <com.truizlop.fabreveallayout.RevealFAB
@@ -47,9 +45,9 @@
             android:layout_alignParentRight="true"
             android:layout_margin="10dp"
             android:padding="15dp"
-            android:src="@android:drawable/ic_dialog_map"
             android:tint="#f0f"
             app:backgroundTint="@color/white"
+            app:fab_icon="@android:drawable/ic_delete"
             app:reveal_layout="@+id/view_three"/>
 
         <RelativeLayout

@@ -2,6 +2,7 @@ package com.truizlop.fabreveallayout;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -11,7 +12,7 @@ import android.widget.RelativeLayout;
 public class RevealFAB extends RelativeLayout {
 
     protected int revealedLayoutId;
-    protected int icon;
+    protected Drawable icon;
     protected boolean useDefaultClick;
     private boolean isAnimatedOut;
 
@@ -39,13 +40,14 @@ public class RevealFAB extends RelativeLayout {
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.RevealFAB);
         revealedLayoutId = a.getResourceId(R.styleable.RevealFAB_reveal_layout, -1);
-        icon = a.getResourceId(R.styleable.RevealFAB_fab_icon, android.R.drawable.ic_dialog_alert);
-        useDefaultClick = a.getBoolean(R.styleable.RevealFAB_default_click, false);
+        icon = a.getDrawable(R.styleable.RevealFAB_fab_icon);
+        useDefaultClick = a.getBoolean(R.styleable.RevealFAB_default_click, true);
 
-        a.recycle();
         ivIcon = (ImageView) findViewById(R.id.ivIcon);
         setBackground(ContextCompat.getDrawable(context, R.drawable.fab_selector));
-        ivIcon.setImageResource(icon);
+        ivIcon.setImageDrawable(icon);
+        a.recycle();
+
     }
 
     @Override protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {

@@ -2,7 +2,7 @@
 <resources>
     <declare-styleable name="RevealFAB">
         <attr name="reveal_layout" format="reference"/>
-        <attr name="fab_icon" format="reference"/>
+        <attr name="fab_icon" format="integer"/>
         <attr name="default_click" format="boolean"/>
     </declare-styleable>
 </resources>
