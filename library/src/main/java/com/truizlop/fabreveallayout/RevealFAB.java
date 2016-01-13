@@ -11,9 +11,9 @@ import android.widget.RelativeLayout;
 public class RevealFAB extends RelativeLayout {
 
     protected int revealedLayoutId;
-    private int icon;
+    protected int icon;
+    protected boolean useDefaultClick;
     private boolean isAnimatedOut;
-    private boolean useDefaultClick;
 
     public ImageView ivIcon;
 
