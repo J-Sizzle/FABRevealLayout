@@ -75,10 +75,12 @@ public class FABRevealLayout extends RelativeLayout {
         for (int i = 0; i < getChildCount(); i++) {
             View view = getChildAt(i);
             if (view instanceof RevealFAB) {
-                fabCount ++;
+                fabCount++;
                 RevealFAB revealFAB = (RevealFAB) view;
                 validateFAB(revealFAB);
-                revealFAB.setOnClickListener(fabClicker);
+                if (revealFAB.isUseDefaultClick()) {
+                    revealFAB.setOnClickListener(fabClicker);
+                }
             }
         }
 
@@ -110,7 +112,7 @@ public class FABRevealLayout extends RelativeLayout {
         params.rightMargin = getContext().getResources().getDimensionPixelSize(R.dimen.corner_radius);
         params.topMargin = getContext().getResources().getDimensionPixelSize(R.dimen.corner_radius);
         circularExpandingView.setVisibility(View.GONE);
-        addView(circularExpandingView, fabCount +1 ,params);
+        addView(circularExpandingView, fabCount + 1, params);
     }
 
     private boolean isShowingMainView() {
@@ -151,7 +153,6 @@ public class FABRevealLayout extends RelativeLayout {
                 expandCircle();
             }
         });
-
         set.start();
     }
 
